@@ -1,0 +1,6 @@
+<%= form_tag upload_admin_products_path, class: "form-inline" do %>
+  <div class="form-group">
+    <%= file_field_tag :file, class: "form-control", required: true, accept: ".csv" %>
+  </div>
+  <%= submit_tag t('.upload_csv'), class: "btn btn-primary" %>
+<% end %>

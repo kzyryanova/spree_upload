@@ -1,0 +1,29 @@
+# Use postgres/example user/password credentials
+version: '3.1'
+
+services:
+
+  db:
+    image: postgres:11
+    restart: always
+#    environment:
+#      - POSTGRES_PASSWORD=example
+#      - POSTGRES_USER=postgres
+    volumes:
+      - ./db-data:/var/lib/postgresql/data
+    ports:
+      - "54320:5432"
+
+#  redis:
+#    image: redis:latest
+#
+#  sidekiq:
+#    build: .
+#    command: bundle exec sidekiq
+#    depends_on:
+#      - db
+#      - redis
+#    volumes:
+#      - .:/app
+#    env_file:
+#      - .env
