@@ -6,24 +6,20 @@ services:
   db:
     image: postgres:11
     restart: always
-#    environment:
-#      - POSTGRES_PASSWORD=example
-#      - POSTGRES_USER=postgres
     volumes:
       - ./db-data:/var/lib/postgresql/data
     ports:
       - "54320:5432"
 
-#  redis:
-#    image: redis:latest
-#
-#  sidekiq:
-#    build: .
-#    command: bundle exec sidekiq
-#    depends_on:
-#      - db
-#      - redis
-#    volumes:
-#      - .:/app
-#    env_file:
-#      - .env
+  redis:
+    image: redis:latest
+    ports:
+      - "63790:6379"
+
+  sidekiq:
+    build: .
+    command: bundle exec sidekiq
+    depends_on:
+      - redis
+    env_file:
+      - .env
